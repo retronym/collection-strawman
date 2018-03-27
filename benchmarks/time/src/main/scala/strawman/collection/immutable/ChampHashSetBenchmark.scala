@@ -37,6 +37,11 @@ class ChampHashSetBenchmark {
   def create(bh: Blackhole): Unit = bh.consume(fresh(size))
 
   @Benchmark
+  def create_iterator(bh: Blackhole): Unit = {
+    bh.consume(xs.iterator())
+  }
+
+  @Benchmark
   @OperationsPerInvocation(1000)
   def expand_incl(bh: Blackhole): Unit = {
     var ys = xs
